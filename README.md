@@ -10,5 +10,5 @@ https://developers.google.com/api-client-library/java/google-oauth-java-client/d
 を表示し、google-oauth-java-client-featured.zip のリンクをクリックする
 1. 各クラスの役割について  
 各クラスの役割は下記の通りとなっている  
-|クラス名|役割|
-|OIDCIndex|RPのトップページ。「〇〇でログイン」の文章を|
+| クラス名 | 役割 |
+| OIDCIndex |RPのトップページ。「〇〇でログイン」の文章を |
