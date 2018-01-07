@@ -11,4 +11,4 @@ https://developers.google.com/api-client-library/java/google-oauth-java-client/d
 1. 各クラスの役割について  
 各クラスの役割は下記の通りとなっている  
 | クラス名 | 役割 |
-| OIDCIndex |RPのトップページ。「〇〇でログイン」の文章を |
+| OIDCIndex | RPのトップページ。「〇〇でログイン」の文章を |
