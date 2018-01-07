@@ -35,11 +35,19 @@ public class OIDCStart extends HttpServlet {
 				AuthorizationCodeRequestUrl url = new AuthorizationCodeRequestUrl(
 					OIDCConsts.AUTH_URL, OIDCConsts.CLIENT_ID
 				);
+				//response_typeパラメータを設定
 				url.setResponseTypes(Arrays.asList("code"));
+
+				//scopeパラメータを設定
 				url.setScopes(Arrays.asList("openid","profile"));
+
+				//stateパラメータを設定
 				url.setState(state);
+
+				//nonceパラメータを設定
 				url.set("nonce", nonce);
 
+				//redirect_uriパラメータを設定
 				GenericUrl redirectUri = new GenericUrl("http://localhost:8080" + req.getContextPath());
 				redirectUri.appendRawPath(OIDCConsts.REDIRECT_URI);
 				url.setRedirectUri(redirectUri.build());
