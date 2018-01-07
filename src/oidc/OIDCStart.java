@@ -44,9 +44,6 @@ public class OIDCStart extends HttpServlet {
 				redirectUri.appendRawPath(OIDCConsts.REDIRECT_URI);
 				url.setRedirectUri(redirectUri.build());
 
-				req.getServletContext().log(redirectUri.build());
-				req.getServletContext().log(url.build());
-
 				res.sendRedirect(url.build());
 			}
 		}

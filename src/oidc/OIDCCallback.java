@@ -86,9 +86,6 @@ public class OIDCCallback extends HttpServlet {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN,"Invalid nonce");
 				return;
 			}
-			req.getServletContext().log(accessToken);
-			req.getServletContext().log(OIDCUtil.getAtHash(accessToken));
-			req.getServletContext().log(idToken.getPayload().getAccessTokenHash());
 			if( ! OIDCUtil.getAtHash(accessToken).equals(idToken.getPayload().getAccessTokenHash())) {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN,"Invalid at_hash");
 				return;
