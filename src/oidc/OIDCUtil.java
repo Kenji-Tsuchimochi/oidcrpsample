@@ -27,15 +27,24 @@ public class OIDCUtil {
 	}
 
 	public static PublicKey getYConnectPublicKey(String kid) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+		//Public Key エンドポイントにアクセス
 		URL url = new URL(OIDCConsts.PUBKEY_URL);
 		HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+
 		if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+			//JSON形式で返却されるのパースする
 			JsonParser parser = new JsonParser();
 			JsonObject obj = parser.parse(new InputStreamReader(conn.getInputStream())).getAsJsonObject();
 
-			KeyFactory kf = KeyFactory.getInstance("RSA");
+			//公開鍵文字列を取得する
 			String pubkeystr = obj.get(kid).getAsString();
+
+			KeyFactory kf = KeyFactory.getInstance("RSA");
+
+			//公開鍵文字列に含まれる余分な文字列を削除する
 			pubkeystr = pubkeystr.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "").replace("-----END PUBLIC KEY-----", "");
+
+			//PublicKeyインスタンスを生成する
 	        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(Base64.decodeBase64(pubkeystr));
 	        PublicKey pubKey = (PublicKey) kf.generatePublic(keySpecX509);
 
@@ -49,7 +58,10 @@ public class OIDCUtil {
 	public static String getUserInfo(String accessToken) throws IOException {
 		URL url = new URL(OIDCConsts.USER_INFO_API_URL);
 		HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+
+		//Authorizationヘッダに、Bearerトークン形式でアクセストークンを設定する
 		conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+
 		if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK) {
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			StringBuilder sb = new StringBuilder();
