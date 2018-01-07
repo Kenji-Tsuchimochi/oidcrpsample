@@ -26,9 +26,10 @@ https://developers.google.com/api-client-library/java/google-oauth-java-client/d
 |OIDCConsts|定数を管理するクラス|
 1. 各クラスのメソッドの解説は下記の通り<br />
   1. OIDCIndex::doGetメソッド
-  38行目、39行目でstateおよびnonceの設定をしている。両者とも容易に推測できず、重複しない値をエンドユーザ毎に設定する。
+  38行目、39行目でstateおよびnonceの設定をしている。両者ともエンドユーザ毎に、容易に推測できず重複しない値を設定する。
 ```java
 sess.setAttribute("state", UUID.randomUUID().toString());
 sess.setAttribute("nonce", UUID.randomUUID().toString());
 ```
-41行目でHTMLを出力している。ブラウザでは下記の表示となる
+41行目でHTMLを出力している。ブラウザでは下記の表示となる。
+
